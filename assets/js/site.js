@@ -163,6 +163,22 @@
       row.addEventListener('pointerleave', function () { p.el.classList.remove('is-on'); });
     });
   }
+  /* touch: [data-preview-touch] shows its preview above the finger while touching, then fades out */
+  var touchPv = null, touchHide = 0;
+  $$('[data-preview-touch]').forEach(function (el) {
+    var p = pvByName[el.getAttribute('data-preview-for') || 'work']; if (!p) return;
+    function at(t) { mx = t.clientX; my = t.clientY - p.el.offsetHeight / 2 - 28; }
+    el.addEventListener('touchstart', function (e) {
+      clearTimeout(touchHide); touchPv = p; at(e.touches[0]);
+      if (!p.el.classList.contains('is-on')) { p.x = mx; p.y = my; }
+      p.el.classList.add('is-on');
+      if (p.track) p.track.style.transform = 'translateY(' + (-100 * +el.getAttribute('data-preview-index')) + '%)';
+    }, { passive: true });
+    el.addEventListener('touchmove', function (e) { at(e.touches[0]); }, { passive: true });
+    function end() { clearTimeout(touchHide); touchHide = setTimeout(function () { p.el.classList.remove('is-on'); touchPv = null; }, 900); }
+    el.addEventListener('touchend', end, { passive: true });
+    el.addEventListener('touchcancel', end, { passive: true });
+  });
   var mq = d.querySelector('[data-marquee] .p-marquee-track'), mqx = 0, dir = -1, vel = 0, lastY = w.scrollY;
   var plx = $$('[data-parallax]');
   if (!RM && w.Lenis) { lenis = new w.Lenis({ lerp: 0.1, wheelMultiplier: 1 }); }
@@ -173,7 +189,8 @@
     vel = lerp(vel, Math.min(Math.abs(dy), 60), 0.1);
     h.classList.toggle('p-scrolled', y > w.innerHeight * 0.3);
     if (FINE && cur && !RM) { cx = lerp(cx, mx, 0.22); cy = lerp(cy, my, 0.22); cur.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%)'; }
-    if (FINE) pvs.forEach(function (p) {
+    pvs.forEach(function (p) {
+      if (!FINE && p !== touchPv) return;
       var hw = p.el.offsetWidth / 2, hh = p.el.offsetHeight / 2;
       var tx = Math.min(Math.max(mx, hw + 16), w.innerWidth - hw - 16), ty = Math.min(Math.max(my, hh + 96), w.innerHeight - hh - 16);
       p.x = lerp(p.x, tx, RM ? 1 : 0.12); p.y = lerp(p.y, ty, RM ? 1 : 0.12);

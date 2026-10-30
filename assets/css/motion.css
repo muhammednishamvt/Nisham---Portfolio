@@ -86,6 +86,7 @@ html.p-scroll-up .p-hero-arrow{transform:rotate(180deg)}
 .p-work-row:focus-visible .p-work-title{color:var(--p-primary)}
 /* preview follower */
 html.p-js.p-fine .p-preview{display:block}
+html.p-js .p-preview.p-preview-portrait{display:block}
 .p-preview{will-change:transform}
 .p-preview-mask{transform:scale(0);transition:transform .5s var(--p-out)}
 .p-preview.is-on .p-preview-mask{transform:scale(1)}

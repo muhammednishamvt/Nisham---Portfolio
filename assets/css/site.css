@@ -155,6 +155,7 @@ h1, h2, h3, p { overflow-wrap: break-word; }
   .p-contact-grid { grid-template-columns: 1fr; }
   .p-hero-media { width: 56%; }
   .p-work-cols { width: 46%; }
+  .p-preview.p-preview-portrait { width: 220px; height: 293px; }
 }
 @media screen and (max-width: 767px) {
   .p-nav { padding: 24px 20px; }
@@ -182,4 +183,5 @@ h1, h2, h3, p { overflow-wrap: break-word; }
   .p-field { grid-template-columns: 1fr; grid-row-gap: 8px; padding: 32px 0px; }
   .p-section-head { flex-direction: column; align-items: flex-start; }
   .p-preview { display: none; }
+  .p-preview.p-preview-portrait { width: 168px; height: 224px; }
 }
