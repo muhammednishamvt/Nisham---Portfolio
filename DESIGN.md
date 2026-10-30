@@ -20,8 +20,8 @@ One neutral scale, one primary, no accent. The orange carries every action. The 
 | `color/border` | `#33302B` | `#D6D0C4` | Dividers, card outlines, input borders |
 | `color/text` | `#F4F1EA` | `#0E0D0B` | Headings and body text |
 | `color/text-muted` | `#9C968C` | `#5E5950` | Captions, meta, secondary copy |
-| `color/primary` | `#E86F31` | `#B84C15` | Primary buttons, links, focus ring, active nav |
-| `color/primary-hover` | `#EC8956` | `#9A3F11` | Hover state of anything primary |
+| `color/primary` | `#FF4D00` | `#B84C15` | Primary buttons, links, focus ring, active nav |
+| `color/primary-hover` | `#FF7033` | `#9A3F11` | Hover state of anything primary |
 | `color/on-primary` | `#0E0D0B` | `#FFFFFF` | Text on a primary button |
 | `color/success` | `#3DBE7A` | `#1E7A4A` | Form sent, confirmations |
 | `color/warning` | `#F2B233` | `#8A5A00` | Soft warnings |
@@ -30,7 +30,7 @@ One neutral scale, one primary, no accent. The orange carries every action. The 
 Why orange: it reads warm and Kerala-rooted (chilli, laterite, terracotta) without leaning on regional clichés, and it stands apart from the blue/purple most portfolios default to.
 
 **Measured contrast** (WCAG, against `color/bg` unless noted)
-Dark — text 17.2 · muted 6.6 · muted on surface-2 5.4 · primary 6.2 · on-primary on primary 6.2 · on-primary on hover 7.7 · success 8.2 · warning 10.4 · error 7.1
+Dark — text 17.2 · muted 6.6 · muted on surface-2 5.4 · primary 5.8 · on-primary on primary 5.8 · on-primary on hover 7.1 · success 8.2 · warning 10.4 · error 7.1
 Light — text 17.2 · muted 6.2 · primary 4.6 · white on primary 5.1 · success 4.7 · warning 5.3 · error 5.3
 All pass AA for body text. Keep light-mode `color/primary` for links and buttons only, never for small muted text.
 

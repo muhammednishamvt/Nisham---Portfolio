@@ -21,7 +21,7 @@ assets/css/tokens.css     Design tokens (colour, type, spacing, radius); respons
 assets/css/site.css       Layout and component styles (p-* classes)
 assets/css/motion.css     Hover, reveal, curtain, menu, cursor states; reduced-motion overrides
 assets/js/site.js         All behaviour (see "Motion system")
-favicon.svg
+favicon.ico / favicon.png / apple-touch-icon.png   Site icon (orange circle mark)
 vercel.json           cleanUrls, no trailing slash; CSS/JS revalidate on every load, images cache for a day
 ```
 
@@ -38,7 +38,7 @@ Each page repeats the same shared blocks: the chrome (cursor, curtain, nav, menu
   - `data-cat` / `data-filter` / `data-view` / `data-view-panel` drive the Work page filters and list/grid toggle.
   - `data-clock` shows the live Kochi time (IST).
 - Buttons: `p-btn-circle` (primary, orange, the one main action per screen) and `p-btn-pill` (secondary, outline). Both contain `<span class="p-fill">` / `<span class="p-fill-light">` + `<span class="p-btn-label">` for the hover wipe.
-- Orange (`--color-primary`, #E86F31) is only for actions, links, focus and the cursor. The one deliberate exception is the × separators in the hero marquee.
+- Orange (`--color-primary`, #FF4D00) is only for actions, links, focus and the cursor. The one deliberate exception is the × separators in the hero marquee.
 - Hard edges (radius 0) on images, cards and sections; pills only on buttons, chips and tags. No shadows, no gradients.
 - Copy is British/Indian English ("organisation", "colour").
 
@@ -49,7 +49,7 @@ One IIFE that exits early on pages without `.p-page`. In order, it handles:
 2. Wrapping `[data-roll]` text for the roll effect, with a duplicate hidden from screen readers.
 3. Splitting `[data-split]` headings into words, keeping an `.p-sr` copy of the full sentence for screen readers.
 4. An IntersectionObserver that adds `.is-in` to reveal elements.
-5. The curtain. It plays the multilingual greeting on the first Home visit per session and shows the page name otherwise. It lifts by adding `html.p-loaded`, Each greeting word fades up and holds for 420ms so it can be read; a 6s fallback in `<head>` guarantees it lifts even if JS fails.
+5. The curtain. It plays the multilingual greeting on the first Home visit per session and shows the page name otherwise. It lifts by adding `html.p-loaded`, and a 4s fallback in `<head>` guarantees it lifts even if JS fails.
 6. Page-leave transition: same-origin link clicks drop the curtain, then navigate.
 7. The menu: open/close, focus trap, Escape closes, `inert` when closed, scrim click closes.
 8. Magnetic hover, only for fine pointers with motion allowed.
