@@ -69,11 +69,13 @@ There's no backend. On submit, `site.js` validates the form, then opens a `mailt
 - Contact: muhammednishamvt@gmail.com and +91 87926 39660 (footer on every page, contact page, `data-mailto`).
 - Socials: X (https://x.com/Nisham_vt) and Reddit (https://www.reddit.com/user/Nishamvt/), opening in a new tab. Instagram is coming later; add it to the `.p-socials` lists (menu, footer, contact) on all five pages when it exists. No LinkedIn or Behance for now.
 - Home: hero line, intro paragraph and the three service descriptions are real copy.
+- Home hero: split layout. Left: arrow, round avatar (`.p-avatar`) and "Creative Head / Brand & Growth". Right: portrait photo with top and bottom scrims (`.p-hero-media::after`) so the nav and marquee stay legible over the light snow. The marquee lists the three services: Creative Direction, Brand Development & Strategy, Growth & Content.
+- Photos: `assets/img/portrait-900.webp` / `portrait-1600.webp` (3:4, used in the home hero and About portrait via `srcset`) and `avatar-256.webp` / `avatar-512.webp` (square, shown as a circle). All are cut from one source photo upscaled 4x with EDSR (OpenCV dnn_superres), with light sharpening. The source is only 736px wide, so a higher-resolution original would look better on large retina screens. Replace the files, keeping the same names and aspect ratios.
 
 ## Placeholders still to replace (all marked)
 
 - Project names "Project One…Six", services and years `20XX`, `href="#"` project links, and the grey numbered image blocks (`.p-card-inner`, `.p-preview-slide`). Nisham will supply the projects.
-- "Portrait placeholder" on the About page. The Home hero is typographic (role, live Kochi clock, hero line as the h1, name marquee); its portrait slot `.p-hero-media` is kept in the markup with `hidden`. When a portrait arrives, removing `hidden` alone will overlap the text, so rework the hero layout at the same time.
+
 - About page: all lorem ipsum (statement, bio, "How I work" steps) and the "OPEN TO / Lorem ipsum" fact. Nisham will write the About copy himself.
 - Work page heading ("Selected work, lorem ipsum…").
 - When adding images, put them inside the existing inner layers (`.p-hero-media-inner`, `.p-portrait-inner`, `.p-card-inner`, `.p-preview-slide`) as `<img>` with `object-fit: cover; width: 100%; height: 100%`, so the reveal, parallax and zoom keep working. Always write real alt text.
