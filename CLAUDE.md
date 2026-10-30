@@ -73,7 +73,7 @@ There's no backend. On submit, `site.js` validates the form, then opens a `mailt
 ## Placeholders still to replace (all marked)
 
 - Project names "Project One…Six", services and years `20XX`, `href="#"` project links, and the grey numbered image blocks (`.p-card-inner`, `.p-preview-slide`). Nisham will supply the projects.
-- "Portrait placeholder" blocks (home hero, about).
+- "Portrait placeholder" on the About page. The Home hero is typographic (role, live Kochi clock, hero line as the h1, name marquee); its portrait slot `.p-hero-media` is kept in the markup with `hidden`. When a portrait arrives, removing `hidden` alone will overlap the text, so rework the hero layout at the same time.
 - About page: all lorem ipsum (statement, bio, "How I work" steps) and the "OPEN TO / Lorem ipsum" fact. Nisham will write the About copy himself.
 - Work page heading ("Selected work, lorem ipsum…").
 - When adding images, put them inside the existing inner layers (`.p-hero-media-inner`, `.p-portrait-inner`, `.p-card-inner`, `.p-preview-slide`) as `<img>` with `object-fit: cover; width: 100%; height: 100%`, so the reveal, parallax and zoom keep working. Always write real alt text.
