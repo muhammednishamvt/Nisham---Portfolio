@@ -22,7 +22,7 @@ assets/css/site.css       Layout and component styles (p-* classes)
 assets/css/motion.css     Hover, reveal, curtain, menu, cursor states; reduced-motion overrides
 assets/js/site.js         All behaviour (see "Motion system")
 favicon.svg
-vercel.json           cleanUrls, no trailing slash, cache headers for /assets
+vercel.json           cleanUrls, no trailing slash; CSS/JS revalidate on every load, images cache for a day
 ```
 
 Each page repeats the same shared blocks: the chrome (cursor, curtain, nav, menu button, slide-in menu) at the top of `<body>` and the footer at the bottom. **When you change the nav, menu or footer, change it in all five HTML files.** Grep for `class="p-chrome"` / `class="p-footer"`.
@@ -96,6 +96,8 @@ The project is `nisham-portfolio` on the Vercel team "Southery", a static deploy
 - Or connect a Git repo to the project in the Vercel dashboard and push.
 
 ## Before shipping a change
+
+- Bump the `?v=` value on the CSS/JS links in all five HTML files whenever CSS or JS changes, so browsers never pair new HTML with an old stylesheet.
 
 - Check phone (390px), tablet (820px) and desktop (1440px): no horizontal scroll, nothing clipped.
 - Tab through every page: visible orange focus ring, menu focus trap, Escape closes the menu.
