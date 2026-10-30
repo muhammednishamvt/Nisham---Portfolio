@@ -68,7 +68,8 @@ h1, h2, h3, p { overflow-wrap: break-word; }
 .p-hero-roletext { margin: 0px; color: var(--color-text); font-family: var(--font-display); font-size: var(--type-h3); font-weight: 500; line-height: 1.15; }
 .p-marquee { position: relative; z-index: 2; overflow: hidden; white-space: nowrap; }
 .p-marquee-track { display: flex; width: max-content; }
-.p-marquee-item { padding-right: 0.3em; color: var(--color-text); font-family: var(--font-display); font-size: var(--type-display); font-weight: 500; line-height: 1.05; letter-spacing: -0.03em; white-space: nowrap; }
+.p-marquee-sep { display: inline-block; padding-left: 0.25em; color: var(--color-text-muted); font-weight: 400; }
+.p-marquee-item { padding-right: 0.25em; color: var(--color-text); font-family: var(--font-display); font-size: var(--type-display); font-weight: 500; line-height: 1.05; letter-spacing: -0.03em; white-space: nowrap; }
 
 /* intro */
 .p-intro-grid { display: grid; grid-template-columns: 1.6fr 1fr; grid-column-gap: 96px; grid-row-gap: 48px; align-items: start; }

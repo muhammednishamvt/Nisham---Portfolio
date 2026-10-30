@@ -165,7 +165,7 @@
     if (FINE && cur && !RM) { cx = lerp(cx, mx, 0.22); cy = lerp(cy, my, 0.22); cur.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%)'; }
     if (FINE && pv) { px = lerp(px, mx, RM ? 1 : 0.12); py = lerp(py, my, RM ? 1 : 0.12); pv.style.transform = 'translate3d(' + px + 'px,' + py + 'px,0) translate(-50%,-50%)'; }
     if (mq && !RM) {
-      var half = mq.scrollWidth / 2; mqx += dir * (0.7 + vel * 0.25);
+      var half = mq.scrollWidth / 2; mqx += dir * (1.1 + vel * 0.25);
       if (mqx <= -half) mqx += half; if (mqx > 0) mqx -= half;
       mq.style.transform = 'translate3d(' + mqx + 'px,0,0)';
     }
