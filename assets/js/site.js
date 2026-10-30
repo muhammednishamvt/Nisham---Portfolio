@@ -137,20 +137,30 @@
   });
 
   /* cursor + preview + marquee + parallax loop */
-  var cur = d.querySelector('.p-cursor'), pv = d.querySelector('.p-preview'), pvt = pv && pv.querySelector('.p-preview-track');
-  var mx = -200, my = -200, cx = mx, cy = my, px = mx, py = my;
+  /* previews: each .p-preview has data-preview="name" (default "work"); triggers carry
+     data-preview-index and optionally data-preview-for="name" and data-cursor="label" */
+  var cur = d.querySelector('.p-cursor'), curLabel = cur && cur.querySelector('.p-cursor-label');
+  var pvs = $$('.p-preview').map(function (el) { return { el: el, name: el.getAttribute('data-preview') || 'work', track: el.querySelector('.p-preview-track'), x: -400, y: -400 }; });
+  var pvByName = {}; pvs.forEach(function (p) { pvByName[p.name] = p; });
+  var mx = -200, my = -200, cx = mx, cy = my;
   if (FINE) {
     w.addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; if (cur) cur.classList.remove('is-hidden'); }, { passive: true });
     d.addEventListener('pointerleave', function () { if (cur) cur.classList.add('is-hidden'); });
     d.addEventListener('pointerover', function (e) {
       if (!cur) return; var t = e.target;
-      var view = !!t.closest('.p-work-row,.p-card');
-      cur.classList.toggle('is-view', view);
-      cur.classList.toggle('is-hover', !view && !!t.closest('a,button,input,textarea,label,[data-magnetic]'));
+      var trigger = t.closest('.p-work-row,.p-card,[data-preview-for]');
+      cur.classList.toggle('is-view', !!trigger);
+      if (curLabel) curLabel.textContent = (trigger && trigger.getAttribute('data-cursor')) || 'View';
+      cur.classList.toggle('is-hover', !trigger && !!t.closest('a,button,input,textarea,label,[data-magnetic]'));
     });
-    if (pv) $$('[data-preview-index]').forEach(function (row) {
-      row.addEventListener('pointerenter', function () { pv.classList.add('is-on'); pvt.style.transform = 'translateY(' + (-100 * +row.getAttribute('data-preview-index')) + '%)'; });
-      row.addEventListener('pointerleave', function () { pv.classList.remove('is-on'); });
+    $$('[data-preview-index]').forEach(function (row) {
+      var p = pvByName[row.getAttribute('data-preview-for') || 'work']; if (!p) return;
+      row.addEventListener('pointerenter', function () {
+        if (p.x < -300) { p.x = mx; p.y = my; }
+        p.el.classList.add('is-on');
+        if (p.track) p.track.style.transform = 'translateY(' + (-100 * +row.getAttribute('data-preview-index')) + '%)';
+      });
+      row.addEventListener('pointerleave', function () { p.el.classList.remove('is-on'); });
     });
   }
   var mq = d.querySelector('[data-marquee] .p-marquee-track'), mqx = 0, dir = -1, vel = 0, lastY = w.scrollY;
@@ -163,7 +173,12 @@
     vel = lerp(vel, Math.min(Math.abs(dy), 60), 0.1);
     h.classList.toggle('p-scrolled', y > w.innerHeight * 0.3);
     if (FINE && cur && !RM) { cx = lerp(cx, mx, 0.22); cy = lerp(cy, my, 0.22); cur.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%)'; }
-    if (FINE && pv) { px = lerp(px, mx, RM ? 1 : 0.12); py = lerp(py, my, RM ? 1 : 0.12); pv.style.transform = 'translate3d(' + px + 'px,' + py + 'px,0) translate(-50%,-50%)'; }
+    if (FINE) pvs.forEach(function (p) {
+      var hw = p.el.offsetWidth / 2, hh = p.el.offsetHeight / 2;
+      var tx = Math.min(Math.max(mx, hw + 16), w.innerWidth - hw - 16), ty = Math.min(Math.max(my, hh + 96), w.innerHeight - hh - 16);
+      p.x = lerp(p.x, tx, RM ? 1 : 0.12); p.y = lerp(p.y, ty, RM ? 1 : 0.12);
+      p.el.style.transform = 'translate3d(' + p.x + 'px,' + p.y + 'px,0) translate(-50%,-50%)';
+    });
     if (mq && !RM) {
       var half = mq.scrollWidth / 2; mqx += dir * (1.1 + vel * 0.25);
       if (mqx <= -half) mqx += half; if (mqx > 0) mqx -= half;
