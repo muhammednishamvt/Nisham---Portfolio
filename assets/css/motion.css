@@ -13,6 +13,8 @@ html.p-js.p-leave-start .p-curtain{transform:translateY(calc(100% + 12vh));trans
 .p-curtain::before,.p-curtain::after{content:"";position:absolute;left:-10%;width:120%;height:18vh;background:inherit;border-radius:50%}
 .p-curtain::after{top:calc(100% - 9vh)}.p-curtain::before{bottom:calc(100% - 9vh)}
 .p-curtain-word{position:relative;z-index:1;display:flex;align-items:center;gap:20px;font-family:var(--font-display)}
+.p-curtain-text{display:inline-block;animation:p-word-in .32s var(--p-out) both}
+@keyframes p-word-in{from{opacity:0;transform:translateY(40%)}to{opacity:1;transform:none}}
 .p-curtain-word::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--p-primary);flex:none}
 /* cursor */
 html.p-js.p-fine .p-cursor{display:flex}

@@ -56,12 +56,13 @@
   if (word) {
     if (d.querySelector('.p-hero') && first && !RM) {
       var g = ['Hello', 'നമസ്കാരം', 'Hola', 'Bonjour', 'Ciao', 'Hallo', 'こんにちは', 'Hello'], gi = 0;
-      word.textContent = g[0];
+      var show = function (t) { word.textContent = ''; var s = d.createElement('span'); s.className = 'p-curtain-text'; s.textContent = t; word.appendChild(s); };
+      show(g[0]);
       var iv = setInterval(function () {
         gi++;
-        if (gi >= g.length) { clearInterval(iv); setTimeout(lift, 120); return; }
-        word.textContent = g[gi];
-      }, 150);
+        if (gi >= g.length) { clearInterval(iv); setTimeout(lift, 250); return; }
+        show(g[gi]);
+      }, 420);
     } else {
       word.textContent = d.title.split(' — ')[0];
       setTimeout(lift, RM ? 0 : 380);

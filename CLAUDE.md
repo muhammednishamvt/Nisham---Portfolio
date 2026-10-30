@@ -38,7 +38,7 @@ Each page repeats the same shared blocks: the chrome (cursor, curtain, nav, menu
   - `data-cat` / `data-filter` / `data-view` / `data-view-panel` drive the Work page filters and list/grid toggle.
   - `data-clock` shows the live Kochi time (IST).
 - Buttons: `p-btn-circle` (primary, orange, the one main action per screen) and `p-btn-pill` (secondary, outline). Both contain `<span class="p-fill">` / `<span class="p-fill-light">` + `<span class="p-btn-label">` for the hover wipe.
-- Orange (`--color-primary`) is only for actions, links, focus and the cursor. Never decorative.
+- Orange (`--color-primary`, #E86F31) is only for actions, links, focus and the cursor. The one deliberate exception is the × separators in the hero marquee.
 - Hard edges (radius 0) on images, cards and sections; pills only on buttons, chips and tags. No shadows, no gradients.
 - Copy is British/Indian English ("organisation", "colour").
 
@@ -49,7 +49,7 @@ One IIFE that exits early on pages without `.p-page`. In order, it handles:
 2. Wrapping `[data-roll]` text for the roll effect, with a duplicate hidden from screen readers.
 3. Splitting `[data-split]` headings into words, keeping an `.p-sr` copy of the full sentence for screen readers.
 4. An IntersectionObserver that adds `.is-in` to reveal elements.
-5. The curtain. It plays the multilingual greeting on the first Home visit per session and shows the page name otherwise. It lifts by adding `html.p-loaded`, and a 4s fallback in `<head>` guarantees it lifts even if JS fails.
+5. The curtain. It plays the multilingual greeting on the first Home visit per session and shows the page name otherwise. It lifts by adding `html.p-loaded`, Each greeting word fades up and holds for 420ms so it can be read; a 6s fallback in `<head>` guarantees it lifts even if JS fails.
 6. Page-leave transition: same-origin link clicks drop the curtain, then navigate.
 7. The menu: open/close, focus trap, Escape closes, `inert` when closed, scrim click closes.
 8. Magnetic hover, only for fine pointers with motion allowed.
@@ -69,7 +69,7 @@ There's no backend. On submit, `site.js` validates the form, then opens a `mailt
 - Contact: muhammednishamvt@gmail.com and +91 87926 39660 (footer on every page, contact page, `data-mailto`).
 - Socials: X (https://x.com/Nisham_vt) and Reddit (https://www.reddit.com/user/Nishamvt/), opening in a new tab. Instagram is coming later; add it to the `.p-socials` lists (menu, footer, contact) on all five pages when it exists. No LinkedIn or Behance for now.
 - Home: hero line, intro paragraph and the three service descriptions are real copy.
-- Home hero: split layout. Left: arrow, round avatar (`.p-avatar`) and "Creative Head / Brand & Growth". Right: portrait photo, blurred (`.p-hero-media .p-cover-img`), with top and bottom scrims (`.p-hero-media::after`) so the nav and marquee stay legible over the light snow. The marquee reads "Discover × Develop × Design × Direct × Deploy" (each word is a `.p-marquee-item`, the × is a muted `.p-marquee-sep`; the set appears twice so the loop is seamless). Base speed is set in `site.js` (`mqx += dir * (1.1 + vel * 0.25)`), and scrolling still pushes it faster and flips its direction.
+- Home hero: split layout. Left: arrow, round avatar (`.p-avatar`) and "Creative Head / Brand & Growth". Right: portrait photo, lightly blurred (7px, `.p-hero-media .p-cover-img`), with top and bottom scrims (`.p-hero-media::after`) so the nav and marquee stay legible over the light snow. The marquee reads "Discover × Develop × Design × Direct × Deploy" (each word is a `.p-marquee-item`, the × is an orange `.p-marquee-sep`; the set appears twice so the loop is seamless). Base speed is set in `site.js` (`mqx += dir * (1.1 + vel * 0.25)`), and scrolling still pushes it faster and flips its direction.
 - Photos: `assets/img/portrait-900.webp` / `portrait-1600.webp` (3:4, used in the home hero and About portrait via `srcset`) and `avatar-256.webp` / `avatar-512.webp` (square, shown as a circle). All are cut from one source photo upscaled 4x with EDSR (OpenCV dnn_superres), with light sharpening. The source is only 736px wide, so a higher-resolution original would look better on large retina screens. Replace the files, keeping the same names and aspect ratios.
 
 ## Placeholders still to replace (all marked)
