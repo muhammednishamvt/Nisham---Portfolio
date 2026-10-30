@@ -1,0 +1,38 @@
+/* Design tokens. Source of truth: DESIGN.md. Pages use these names, never raw values. */
+:root {
+  color-scheme: dark;
+  /* colour (dark is the default theme) */
+  --color-bg: #0E0D0B;
+  --color-surface: #171613;
+  --color-surface-2: #24221E;
+  --color-border: #33302B;
+  --color-text: #F4F1EA;
+  --color-text-muted: #9C968C;
+  --color-primary: #FF5A1F;
+  --color-primary-hover: #FF7A47;
+  --color-on-primary: #0E0D0B;
+  --color-success: #3DBE7A;
+  --color-warning: #F2B233;
+  --color-error: #FF6B81;
+  /* type */
+  --font-display: 'Clash Display', 'Noto Sans Malayalam', system-ui, sans-serif;
+  --font-body: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --type-display: 160px;
+  --type-h1: 80px;
+  --type-h2: 52px;
+  --type-h3: 1.75rem;
+  --type-h4: 1.375rem;
+  --type-body-lg: 1.25rem;
+  --type-body: 1.0625rem;
+  --type-small: 0.875rem;
+  /* spacing (8-based) */
+  --space-1: 4px; --space-2: 8px; --space-3: 16px; --space-4: 24px; --space-5: 32px;
+  --space-6: 48px; --space-7: 64px; --space-8: 96px; --space-9: 128px; --space-10: 160px;
+  /* layout + shape */
+  --size-container: 1280px;
+  --size-measure: 68ch;
+  --radius-none: 0px;
+  --radius-pill: 999px;
+}
+@media screen and (max-width: 991px) { :root { --type-display: 104px; --type-h1: 60px; --type-h2: 42px; } }
+@media screen and (max-width: 767px) { :root { --type-display: 64px; --type-h1: 44px; --type-h2: 32px; } }
