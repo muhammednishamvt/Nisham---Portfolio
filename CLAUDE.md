@@ -64,13 +64,18 @@ Rules: always respect `prefers-reduced-motion` (JS checks the `RM` flag; CSS has
 
 There's no backend. On submit, `site.js` validates the form, then opens a `mailto:` to the address in `data-mailto` on `#contact-form`, with the fields as the body, and shows `.p-form-done`. To collect submissions properly, point the form at a form service (e.g. Formspree or Basin): set `action` and `method="post"`, then remove the `submit` handler in `site.js` or change it to `fetch()`.
 
-## Placeholders to replace (all marked)
+## Real content so far
 
-- Email `hello@example.com` and phone `+91 00000 00000` (footer on every page, contact page, and `data-mailto`).
-- Social links `href="#"` (menu, footer, contact).
-- Project names "Project One…Six", services and years `20XX`, and the grey numbered image blocks (`.p-card-inner`, `.p-preview-slide`).
+- Contact: muhammednishamvt@gmail.com and +91 87926 39660 (footer on every page, contact page, `data-mailto`).
+- Socials: X (https://x.com/Nisham_vt) and Reddit (https://www.reddit.com/user/Nishamvt/), opening in a new tab. Instagram is coming later; add it to the `.p-socials` lists (menu, footer, contact) on all five pages when it exists. No LinkedIn or Behance for now.
+- Home: hero line, intro paragraph and the three service descriptions are real copy.
+
+## Placeholders still to replace (all marked)
+
+- Project names "Project One…Six", services and years `20XX`, `href="#"` project links, and the grey numbered image blocks (`.p-card-inner`, `.p-preview-slide`). Nisham will supply the projects.
 - "Portrait placeholder" blocks (home hero, about).
-- All lorem ipsum copy, the "OPEN TO / Lorem ipsum" fact, and SEO descriptions in each `<head>`.
+- About page: all lorem ipsum (statement, bio, "How I work" steps) and the "OPEN TO / Lorem ipsum" fact. Nisham will write the About copy himself.
+- Work page heading ("Selected work, lorem ipsum…").
 - When adding images, put them inside the existing inner layers (`.p-hero-media-inner`, `.p-portrait-inner`, `.p-card-inner`, `.p-preview-slide`) as `<img>` with `object-fit: cover; width: 100%; height: 100%`, so the reveal, parallax and zoom keep working. Always write real alt text.
 
 Never invent testimonials, client logos, metrics or awards. Ask Nisham for them or leave a marked placeholder.
