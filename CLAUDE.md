@@ -21,6 +21,7 @@ assets/css/tokens.css     Design tokens (colour, type, spacing, radius); respons
 assets/css/site.css       Layout and component styles (p-* classes)
 assets/css/motion.css     Hover, reveal, curtain, menu, cursor states; reduced-motion overrides
 assets/js/site.js         All behaviour (see "Motion system")
+assets/js/fx.js           Second motion layer: contour field, scramble text, scroll skew, tilt, progress line
 favicon.ico / favicon.png / apple-touch-icon.png   Site icon (orange circle mark)
 vercel.json           cleanUrls, no trailing slash; CSS/JS revalidate on every load, images cache for a day
 ```
@@ -37,6 +38,10 @@ Each page repeats the same shared blocks: the chrome (cursor, curtain, nav, menu
   - `data-preview-index="n"` shows slide n of a hover preview (`.p-preview-slide` order must match). Add `data-preview-for="name"` to target a `.p-preview` with `data-preview="name"` (default is the work preview), and `data-cursor="Label"` to change the cursor circle text (default "View"). Home has two previews: the work list (landscape) and `data-preview="me"` (vertical 3:4 portrait card, triggered by hovering the blurred hero photo, cursor "Hello"). Previews stay inside the viewport and below the nav. Add `data-preview-touch` to a trigger to make it work on touch screens too: touching shows the card just above the finger, it follows the finger (scrolling still works), and it hides 0.9s after release. The hero photo has it; the portrait card is 300×400 on desktop, 220×293 on tablet (≤991px) and 168×224 on phone (≤767px).
   - `data-cat` / `data-filter` / `data-view` / `data-view-panel` drive the Work page filters and list/grid toggle.
   - `data-clock` shows the live Kochi time (IST).
+  - `data-field="1"` turns a section into a live WebGL contour field (topographic lines in `--color-border` / `--color-text-muted` that drift slowly; lines near the pointer or finger warm to `--color-primary`). The value is line strength: the home hero uses 1, the footer 0.55. Colours are read from the tokens at runtime. Without WebGL the section just shows `--color-bg`; with reduced motion it draws one still frame.
+  - `data-scramble` decodes text from random glyphs when it scrolls into view (eyebrows, meta labels, service and field numbers). Use it only on elements with plain text and no children. Put `data-scramble-host` on a parent to replay it on hover (the service blocks do this).
+  - `data-skew` leans a container with scroll speed (max 3°): work list, work grid, services.
+  - `data-tilt` tilts a card's `.p-card-media` toward the pointer (work grid cards).
 - Buttons: `p-btn-circle` (primary, orange, the one main action per screen) and `p-btn-pill` (secondary, outline). Both contain `<span class="p-fill">` / `<span class="p-fill-light">` + `<span class="p-btn-label">` for the hover wipe.
 - Orange (`--color-primary`, #FF4D00) is only for actions, links, focus and the cursor. The one deliberate exception is the × separators in the hero marquee.
 - Hard edges (radius 0) on images, cards and sections; pills only on buttons, chips and tags. No shadows, no gradients.
@@ -57,6 +62,8 @@ One IIFE that exits early on pages without `.p-page`. In order, it handles:
 10. Work filters and the list/grid toggle.
 11. The contact form, which opens the visitor's mail app (see below).
 12. The Kochi clock.
+
+`assets/js/fx.js` loads after it (its own IIFE, same `RM` / fine-pointer rules) and runs the contour fields, scramble, skew, tilt and the `.p-progress` reading line (first child of `.p-chrome`, `--color-text` at 50%). `motion.css` also adds a site-wide film grain (`body::after`, 5% opacity, still under reduced motion), the hover outline on marquee words and the service hover (rule draws in, title nudges).
 
 Rules: always respect `prefers-reduced-motion` (JS checks the `RM` flag; CSS has a reduce block in `motion.css`). Touch devices get no cursor, preview follower or magnetic effect (`html.p-fine` gates them). Keep keyboard parity: every hover effect has a `:focus-visible` twin.
 

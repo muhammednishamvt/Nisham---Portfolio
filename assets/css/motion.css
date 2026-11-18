@@ -127,3 +127,36 @@ html.p-js .p-marquee{transform:none!important;transition:none!important}
 .p-menu,.p-menu-link{transition-duration:.01s!important}
 [data-cat]{animation:none}
 }
+/* ---- fx layer (assets/js/fx.js) ---- */
+/* contour field: canvas sits behind everything in its host */
+.p-has-field{position:relative;isolation:isolate}
+.p-footer.p-has-field{overflow:hidden}
+.p-field-canvas{position:absolute;inset:0;z-index:-1;width:100%;height:100%;display:block;opacity:0;transition:opacity 2s var(--p-out) .4s;pointer-events:none}
+.p-field-canvas.is-on{opacity:1}
+/* film grain over the whole site */
+body::after{content:"";position:fixed;inset:-50%;z-index:80;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:p-grain 1s steps(6) infinite}
+@keyframes p-grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-2%,6%)}80%{transform:translate(5%,-2%)}100%{transform:translate(0,0)}}
+/* reading progress */
+.p-progress{position:fixed;left:0;top:0;z-index:85;width:100%;height:2px;background:var(--color-text);opacity:.5;transform:scaleX(0);transform-origin:left;pointer-events:none}
+/* scramble keeps its width steady */
+[data-scramble]{font-variant-numeric:tabular-nums}
+/* scroll skew */
+[data-skew]{will-change:transform;transform-origin:center}
+/* marquee: words go outline on hover */
+html.p-fine .p-marquee-item{transition:color .45s var(--p-ease)}
+html.p-fine .p-marquee-item:hover{color:transparent;-webkit-text-stroke:1px var(--color-text)}
+html.p-fine .p-marquee-item:hover .p-marquee-sep{-webkit-text-stroke:0;color:var(--p-primary)}
+/* services: top rule draws in orange-free, title nudges on hover */
+.p-service{position:relative}
+.p-service::before{content:"";position:absolute;left:0;top:-1px;width:100%;height:1px;background:var(--color-text);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--p-ease)}
+.p-service:hover::before{transform:scaleX(1)}
+.p-service-title{transition:transform .6s var(--p-out)}
+.p-service:hover .p-service-title{transform:translateX(8px)}
+/* tilt target */
+[data-tilt] .p-card-media{transform-style:preserve-3d;will-change:transform}
+@media (prefers-reduced-motion:reduce){
+body::after{animation:none}
+[data-skew]{transform:none!important}
+.p-service::before{transition:none}
+.p-field-canvas{transition:none}
+}

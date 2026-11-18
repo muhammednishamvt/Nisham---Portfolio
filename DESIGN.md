@@ -81,6 +81,7 @@ Body lines stay between 60 and 75 characters: `size/measure` = 68ch.
 - **Radius:** `radius/none` 0 for images, cards and sections (hard edges are part of the look). `radius/pill` 999px for buttons and tags only. Nothing in between.
 - **Shadows:** none. Depth comes from `color/surface` steps and 1px `color/border` lines.
 - **Motion:** 250ms ease-out for hovers; image zoom on card hover max 1.04. Respect reduced-motion.
+- **Texture:** the hero and footer carry a live contour field (thin topographic lines, `color/border` and `color/text-muted`; lines near the pointer warm to `color/primary`), and the whole site has a 5% film grain. Both are linework and noise, not gradients, and sit behind content so text contrast is unchanged.
 
 ---
 
