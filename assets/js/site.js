@@ -188,7 +188,7 @@
     if (dy) { dir = dy > 0 ? -1 : 1; h.classList.toggle('p-scroll-up', dy < 0); }
     vel = lerp(vel, Math.min(Math.abs(dy), 60), 0.1);
     h.classList.toggle('p-scrolled', y > w.innerHeight * 0.3);
-    if (FINE && cur && !RM) { cx = lerp(cx, mx, 0.22); cy = lerp(cy, my, 0.22); cur.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%)'; }
+    if (FINE && cur) { cx = RM ? mx : lerp(cx, mx, 0.22); cy = RM ? my : lerp(cy, my, 0.22); cur.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%)'; }
     pvs.forEach(function (p) {
       if (!FINE && p !== touchPv) return;
       var hw = p.el.offsetWidth / 2, hh = p.el.offsetHeight / 2;

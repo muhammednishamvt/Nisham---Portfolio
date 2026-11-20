@@ -176,3 +176,5 @@ body::after{animation:none}
 html.p-nocursor,html.p-nocursor *,html.p-nocursor *::before,html.p-nocursor *::after{cursor:none!important}
 /* hide every system cursor; the bitcoin cursor (.p-cursor) is the only pointer */
 html.p-nocursor,html.p-nocursor *,html.p-nocursor *::before,html.p-nocursor *::after{cursor:none!important}
+/* the bitcoin coin is the only pointer on mouse/trackpad screens: hide every native cursor (arrow, hand, text I-beam, resize…) */
+html.p-js.p-fine,html.p-js.p-fine *,html.p-js.p-fine *::before,html.p-js.p-fine *::after{cursor:none!important}
