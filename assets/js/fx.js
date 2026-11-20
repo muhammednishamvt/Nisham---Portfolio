@@ -12,6 +12,13 @@
   var FINE = w.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var $$ = function (s, r) { return [].slice.call((r || d).querySelectorAll(s)); };
   var lerp = function (a, b, n) { return a + (b - a) * n; };
+  /* the bitcoin cursor replaces the system cursor (arrow, hand, text beam) on mouse/trackpad.
+     Not under reduced motion: site.js does not move the custom cursor then, so the system one stays. */
+  if (FINE && !RM && d.querySelector('.p-cursor')) h.classList.add('p-nocursor');
+
+  /* the bitcoin cursor replaces every system cursor (arrow, hand, text beam) on mouse/trackpad screens.
+     Only when motion is allowed, because that is when site.js moves the custom cursor. */
+  if (FINE && !RM && d.querySelector('.p-cursor')) h.classList.add('p-nocursor');
 
   /* ---------- 1. contour field ---------- */
   var VS = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
