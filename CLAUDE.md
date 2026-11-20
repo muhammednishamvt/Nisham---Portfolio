@@ -44,7 +44,7 @@ Each page repeats the same shared blocks: the chrome (cursor, curtain, nav, menu
   - `data-tilt` tilts a card's `.p-card-media` toward the pointer (work grid cards).
 - Buttons: `p-btn-circle` (primary, orange, the one main action per screen) and `p-btn-pill` (secondary, outline). Both contain `<span class="p-fill">` / `<span class="p-fill-light">` + `<span class="p-btn-label">` for the hover wipe.
 - Orange (`--color-primary`, #FF4D00) is only for actions, links, focus and the cursor. The one deliberate exception is the asterisk separators in the hero marquee (`assets/img/sign.webp`, Nisham's own mark, in its own orange).
-- The desktop cursor is Nisham's bitcoin coin (`assets/img/cursor-btc.webp`, cut to a circle from his BTC.png): 12px at rest, 44px over links and buttons, and a solid orange 96px circle with its label ("View" / "Hello") over previews.
+- The desktop cursor is Nisham's bitcoin coin (`assets/img/cursor-btc.webp`, cut to a circle from his BTC.png): 24px at rest, 44px over links and buttons, and a solid orange 96px circle with its label ("View" / "Hello") over previews.
 - Hard edges (radius 0) on images, cards and sections; pills only on buttons, chips and tags. No shadows, no gradients.
 - Copy is British/Indian English ("organisation", "colour").
 

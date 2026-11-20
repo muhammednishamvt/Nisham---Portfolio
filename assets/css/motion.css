@@ -161,13 +161,14 @@ body::after{animation:none}
 .p-field-canvas{transition:none}
 }
 /* bitcoin cursor: the coin shows at rest and on hover; the "View"/"Hello" state stays a solid orange circle with its label */
-.p-cursor{background-color:transparent}
+.p-cursor{background-color:transparent;width:24px;height:24px}
 .p-cursor::before{content:"";position:absolute;inset:0;border-radius:50%;background:url("/assets/img/cursor-btc.webp") center/cover no-repeat;transition:opacity .3s}
 .p-cursor-label{position:relative;z-index:1}
 .p-cursor.is-hover{opacity:1}
 .p-cursor.is-view{background-color:var(--p-primary)}
 .p-cursor.is-view::before{opacity:0}
 /* marquee separator mark */
-.p-marquee-sep img{display:inline-block;height:.6em;width:auto;vertical-align:middle;position:relative;top:-.06em}
+.p-marquee-sep img{display:inline-block;height:2.4em;width:auto;vertical-align:middle;position:relative;top:-.12em;margin-block:-.9em}
 /* phone: the hero under the photo is solid background, no contour field */
 @media (max-width:767px){.p-hero .p-field-canvas{display:none}}
+.p-marquee{overflow:visible;overflow-x:clip;overflow-y:visible}
