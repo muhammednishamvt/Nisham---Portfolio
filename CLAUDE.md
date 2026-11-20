@@ -22,7 +22,7 @@ assets/css/site.css       Layout and component styles (p-* classes)
 assets/css/motion.css     Hover, reveal, curtain, menu, cursor states; reduced-motion overrides
 assets/js/site.js         All behaviour (see "Motion system")
 assets/js/fx.js           Second motion layer: contour field, scramble text, scroll skew, tilt, progress line
-favicon.ico / favicon.png / apple-touch-icon.png   Site icon (orange circle mark)
+favicon.ico / favicon.png / apple-touch-icon.png   Site icon (orange N mark on black, from Nisham's LOGO.png)
 vercel.json           cleanUrls, no trailing slash; CSS/JS revalidate on every load, images cache for a day
 ```
 
@@ -38,12 +38,13 @@ Each page repeats the same shared blocks: the chrome (cursor, curtain, nav, menu
   - `data-preview-index="n"` shows slide n of a hover preview (`.p-preview-slide` order must match). Add `data-preview-for="name"` to target a `.p-preview` with `data-preview="name"` (default is the work preview), and `data-cursor="Label"` to change the cursor circle text (default "View"). Home has two previews: the work list (landscape) and `data-preview="me"` (vertical 3:4 portrait card, triggered by hovering the blurred hero photo, cursor "Hello"). Previews stay inside the viewport and below the nav. Add `data-preview-touch` to a trigger to make it work on touch screens too: touching shows the card just above the finger, it follows the finger (scrolling still works), and it hides 0.9s after release. The hero photo has it; the portrait card is 300×400 on desktop, 220×293 on tablet (≤991px) and 168×224 on phone (≤767px).
   - `data-cat` / `data-filter` / `data-view` / `data-view-panel` drive the Work page filters and list/grid toggle.
   - `data-clock` shows the live Kochi time (IST).
-  - `data-field="1"` turns a section into a live WebGL contour field (topographic lines in `--color-border` / `--color-text-muted` that drift slowly; lines near the pointer or finger warm to `--color-primary`). The value is line strength: the home hero uses 1, the footer 0.55. Colours are read from the tokens at runtime. Without WebGL the section just shows `--color-bg`; with reduced motion it draws one still frame.
+  - `data-field="1"` turns a section into a live WebGL contour field (topographic lines in `--color-border` / `--color-text-muted` that drift slowly; lines near the pointer or finger warm to `--color-primary`). The value is line strength: the home hero uses 1, the footer 0.55. On phones (≤767px) the hero hides its field and stays solid `--color-bg` under the photo; the footer keeps it. Colours are read from the tokens at runtime. Without WebGL the section just shows `--color-bg`; with reduced motion it draws one still frame.
   - `data-scramble` decodes text from random glyphs when it scrolls into view (eyebrows, meta labels, service and field numbers). Use it only on elements with plain text and no children. Put `data-scramble-host` on a parent to replay it on hover (the service blocks do this).
   - `data-skew` leans a container with scroll speed (max 3°): work list, work grid, services.
   - `data-tilt` tilts a card's `.p-card-media` toward the pointer (work grid cards).
 - Buttons: `p-btn-circle` (primary, orange, the one main action per screen) and `p-btn-pill` (secondary, outline). Both contain `<span class="p-fill">` / `<span class="p-fill-light">` + `<span class="p-btn-label">` for the hover wipe.
-- Orange (`--color-primary`, #FF4D00) is only for actions, links, focus and the cursor. The one deliberate exception is the × separators in the hero marquee.
+- Orange (`--color-primary`, #FF4D00) is only for actions, links, focus and the cursor. The one deliberate exception is the asterisk separators in the hero marquee (`assets/img/sign.webp`, Nisham's own mark, in its own orange).
+- The desktop cursor is Nisham's bitcoin coin (`assets/img/cursor-btc.webp`, cut to a circle from his BTC.png): 12px at rest, 44px over links and buttons, and a solid orange 96px circle with its label ("View" / "Hello") over previews.
 - Hard edges (radius 0) on images, cards and sections; pills only on buttons, chips and tags. No shadows, no gradients.
 - Copy is British/Indian English ("organisation", "colour").
 
@@ -76,7 +77,7 @@ There's no backend. On submit, `site.js` validates the form, then opens a `mailt
 - Contact: muhammednishamvt@gmail.com and +91 87926 39660 (footer on every page, contact page, `data-mailto`).
 - Socials: X (https://x.com/Nisham_vt) and Reddit (https://www.reddit.com/user/Nishamvt/), opening in a new tab. Instagram is coming later; add it to the `.p-socials` lists (menu, footer, contact) on all five pages when it exists. No LinkedIn or Behance for now.
 - Home: hero line, intro paragraph and the three service descriptions are real copy.
-- Home hero: split layout. Left: arrow, round avatar (`.p-avatar`) and "Creative Head / Brand & Growth". Right: portrait photo, lightly blurred (7px, `.p-hero-media .p-cover-img`), with top and bottom scrims (`.p-hero-media::after`) so the nav and marquee stay legible over the light snow. The marquee reads "Discover × Develop × Design × Direct × Deploy" (each word is a `.p-marquee-item`, the × is an orange `.p-marquee-sep`; the set appears twice so the loop is seamless). Base speed is set in `site.js` (`mqx += dir * (1.1 + vel * 0.25)`), and scrolling still pushes it faster and flips its direction.
+- Home hero: split layout. Left: arrow, round avatar (`.p-avatar`) and "Creative Head / Brand & Growth". Right: portrait photo, lightly blurred (7px, `.p-hero-media .p-cover-img`), with top and bottom scrims (`.p-hero-media::after`) so the nav and marquee stay legible over the light snow. The marquee reads "Discover ✱ Design ✱ Direct ✱ Deploy" (each word is a `.p-marquee-item`; the separator is a `.p-marquee-sep` holding the asterisk image; the set appears twice so the loop is seamless). Base speed is set in `site.js` (`mqx += dir * (1.1 + vel * 0.25)`), and scrolling still pushes it faster and flips its direction.
 - Photos: `assets/img/portrait-900.webp` / `portrait-1600.webp` (3:4, used in the home hero and About portrait via `srcset`) and `avatar-256.webp` / `avatar-512.webp` (square, shown as a circle). All are cut from one source photo upscaled 4x with EDSR (OpenCV dnn_superres), with light sharpening. The source is only 736px wide, so a higher-resolution original would look better on large retina screens. Replace the files, keeping the same names and aspect ratios.
 
 ## Placeholders still to replace (all marked)

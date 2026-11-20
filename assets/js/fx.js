@@ -97,7 +97,7 @@
     var t0 = performance.now(), seed = Math.random() * 200, visible = true, raf = 0;
     function draw(now) {
       raf = 0;
-      if (!visible || d.hidden) return;
+      if (!visible || d.hidden || !cv.offsetWidth) return;
       px = lerp(px, tx, 0.08); py = lerp(py, ty, 0.08); inten = lerp(inten, want, 0.05);
       gl.uniform1f(U.t, seed + (now - t0) / 1000);
       gl.uniform2f(U.m, px, py); gl.uniform1f(U.mi, inten);
@@ -112,6 +112,7 @@
     new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) kick(); }).observe(host);
     d.addEventListener('visibilitychange', kick);
     var rt; w.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { size(); if (RM) draw(performance.now()); else kick(); }, 120); });
+    /* a canvas hidden by CSS (the hero on phones) stops drawing; kick() restarts it if the window grows */
     if (RM) host.addEventListener('pointermove', function () { if (!raf) raf = requestAnimationFrame(draw); }, { passive: true });
   }
   $$('[data-field]').forEach(field);
